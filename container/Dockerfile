@@ -3,6 +3,7 @@ FROM golang AS build-env
 WORKDIR /src/
 ADD go.mod /src/
 ADD server.go /src/
+RUN go get main
 RUN cd /src && CGO_ENABLED=0 GOOS=linux GOARCH=amd64  go build -tags netgo -a -installsuffix cgo -o server
 
 # final stage
